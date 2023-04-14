@@ -1,0 +1,12 @@
+system:
+  addr: 8080
+
+mysql:
+  address: "115.236.153.172"
+  port: "52542"
+  username: "ericyuan"
+  password: "111577"
+  database_name: "blogger"
+
+jwt:
+  secret: "blog_jwt_key"
