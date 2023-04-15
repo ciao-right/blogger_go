@@ -10,6 +10,8 @@ func InitLog() *log.Logger {
 	logger := log.New()
 	logger.SetFormatter(&log.JSONFormatter{})
 	logger.SetOutput(os.Stdout)
+	_, err := os.Create("runtime/info.log")
+	logger.WithError(err).Info("do")
 	logger.SetLevel(log.WarnLevel)
 	return logger
 }

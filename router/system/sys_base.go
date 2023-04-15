@@ -12,6 +12,7 @@ func (s *sysBaseRouter) InitSystemBase(group *gin.RouterGroup) gin.IRouter {
 	baseApi := new(v1.Api).System.BaseApi
 	{
 		baseRouter.POST("/login", baseApi.Login)
+		baseRouter.POST("/register", baseApi.Register)
 	}
 	return baseRouter
 }
