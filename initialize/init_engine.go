@@ -11,6 +11,8 @@ func InitEngine() *gin.Engine {
 	systemRouter := new(routerGroup.RouterGroup).System
 	{
 		systemRouter.InitSystemBase(publicGroup)
+		systemRouter.InitSystemDept(publicGroup)
+		systemRouter.InitSystemUser(publicGroup)
 	}
 
 	return gin

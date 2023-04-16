@@ -5,6 +5,7 @@ import (
 	"blogger/service"
 	"blogger/utils"
 	"fmt"
+	"github.com/dchest/captcha"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 	"net/http"
@@ -71,4 +72,32 @@ func (b *BaseApi) Register(ctx *gin.Context) {
 		"message": "success",
 		"data":    1,
 	})
+}
+
+type captchaResponse struct {
+	CaptchaId string `json:"captchaId"`
+	ImageUrl  string `json:"imageUrl"`
+	imgWidth  int
+	imgHeight int
+}
+
+//todo 生成验证码
+
+func (b *BaseApi) GenerateCaptcha(ctx *gin.Context) {
+	d := struct {
+		CaptchaId string
+	}{
+		captcha.New(),
+	}
+	var captchaRes captchaResponse
+	if d.CaptchaId != "" {
+		captchaRes.CaptchaId = d.CaptchaId
+		captchaRes.ImageUrl = "/captcha/" + d.CaptchaId + ".png"
+	}
+	utils.SuccessResCom(ctx, captchaRes)
+
+}
+
+func (b *BaseApi) GetCaptchaPng(ctx *gin.Context) {
+	utils.ServeHTTP(ctx.Writer, ctx.Request)
 }
