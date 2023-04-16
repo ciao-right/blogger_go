@@ -7,6 +7,7 @@ type SysDept struct {
 	Parent    int       `json:"parent" gorm:"column:parent;not null;type:int;default:0"`
 	Sort      int       `json:"sort" gorm:"column:sort; not null ;type:int;default:1"`
 	Children  []SysDept `json:"children" gorm:"-"`
+	Remark    string    `json:"remark" gorm:"column:remark;type:varchar(255)"`
 }
 
 func (u *SysDept) TableName() string {
