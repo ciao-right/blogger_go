@@ -13,6 +13,8 @@ func (s *sysBaseRouter) InitSystemBase(group *gin.RouterGroup) gin.IRouter {
 	{
 		baseRouter.POST("/login", baseApi.Login)
 		baseRouter.POST("/register", baseApi.Register)
+		baseRouter.GET("/captcha", baseApi.GenerateCaptcha)
+		baseRouter.GET("/captchaImg/:source", baseApi.GetCaptchaPng)
 	}
 	return baseRouter
 }

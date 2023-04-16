@@ -19,3 +19,9 @@ func (u *BaseModel) GetCreatedOn() time.Time {
 func (u *BaseModel) GetModifiedOn() time.Time {
 	return u.ModifiedOn
 }
+
+type SearchPage struct {
+	Page      int         `json:"page"`
+	PageSize  int         `json:"page_size"`
+	Condition interface{} `json:"condition"`
+}

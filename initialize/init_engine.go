@@ -12,6 +12,7 @@ func InitEngine() *gin.Engine {
 	{
 		systemRouter.InitSystemBase(publicGroup)
 		systemRouter.InitSystemDept(publicGroup)
+		systemRouter.InitSystemUser(publicGroup)
 	}
 
 	return gin

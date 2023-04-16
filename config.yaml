@@ -7,6 +7,7 @@ mysql:
   username: "ericyuan"
   password: "111577"
   database_name: "blogger"
-
+redis:
+  address: "localhost:49153"
 jwt:
   secret: "blog_jwt_key"
