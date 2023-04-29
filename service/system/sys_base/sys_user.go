@@ -4,6 +4,7 @@ import (
 	"blogger/global"
 	"blogger/model/system"
 	"errors"
+	"gorm.io/gorm"
 )
 
 type UserService struct{}
@@ -29,7 +30,9 @@ func (u *UserService) Delete(id int) error {
 func (u *UserService) GetList(page, pageSize int, user interface{}) ([]system.User, int, error) {
 	db := global.Db
 	var users []system.User
-	res := db.Where(user).Joins("Dept.name").Offset((page - 1) * pageSize).Limit(pageSize).Find(&users)
+	res := db.Where(user).Preload("Dept", func(db *gorm.DB) *gorm.DB {
+		return db.Select("id, name")
+	}).Offset((page - 1) * pageSize).Limit(pageSize).Find(&users)
 	return users, getTotal(user), res.Error
 }
 func getTotal(user interface{}) int {
