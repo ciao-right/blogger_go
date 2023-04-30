@@ -101,3 +101,17 @@ func (b *BaseApi) GenerateCaptcha(ctx *gin.Context) {
 func (b *BaseApi) GetCaptchaPng(ctx *gin.Context) {
 	utils.ServeHTTP(ctx.Writer, ctx.Request)
 }
+
+func (b *BaseApi) SaveFile(ctx *gin.Context) {
+	file, err := ctx.FormFile("file")
+	if err != nil {
+		utils.FailResCom(ctx, err, 0)
+		return
+	}
+	err = ctx.SaveUploadedFile(file, "./files")
+	if err != nil {
+		utils.FailResCom(ctx, err, 0)
+		return
+	}
+	utils.SuccessResCom(ctx, gin.H{})
+}

@@ -76,5 +76,4 @@ func (u *UserApi) GetList(c *gin.Context) {
 	data["list"] = resDeptList
 	data["total"] = total
 	utils.SuccessResCom(c, data)
-
 }

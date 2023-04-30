@@ -25,3 +25,8 @@ type SearchPage struct {
 	PageSize  int         `json:"page_size"`
 	Condition interface{} `json:"condition"`
 }
+
+type SysFile struct {
+	Url  string `json:"url"`
+	Name string `json:"name"`
+}
