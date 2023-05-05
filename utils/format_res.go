@@ -30,16 +30,16 @@ func SuccessResCom(c *gin.Context, data interface{}) {
 	})
 }
 
-func FormatResForTime(list []system.Time) {
+func FormatResForTime(list []system.ModelTime) {
 	var resDeptList []struct {
-		data       system.Time
+		data       system.ModelTime
 		CreatedOn  string `json:"created_on" `
 		ModifiedOn string `json:"modified_on" `
 	}
 
 	for _, v := range list {
 		resDeptList = append(resDeptList, struct {
-			data       system.Time
+			data       system.ModelTime
 			CreatedOn  string `json:"created_on" `
 			ModifiedOn string `json:"modified_on" `
 		}{

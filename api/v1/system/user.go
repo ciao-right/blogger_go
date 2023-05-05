@@ -63,7 +63,7 @@ func (u *UserApi) GetList(c *gin.Context) {
 		ModifiedOn string `json:"modified_on" `
 	}
 
-	var resDeptList []_userList
+	var resDeptList []system.ModelTime
 	for _, user := range list {
 		resDeptList = append(resDeptList, _userList{
 			User:       user,

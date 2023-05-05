@@ -8,15 +8,15 @@ type BaseModel struct {
 	ModifiedOn time.Time `json:"modified_on" gorm:"comment:更新时间; autoUpdateTime"`
 }
 
-type Time interface {
+type ModelTime interface {
 	GetCreatedOn() time.Time
 	GetModifiedOn() time.Time
 }
 
-func (u *BaseModel) GetCreatedOn() time.Time {
+func (u BaseModel) GetCreatedOn() time.Time {
 	return u.CreatedOn
 }
-func (u *BaseModel) GetModifiedOn() time.Time {
+func (u BaseModel) GetModifiedOn() time.Time {
 	return u.ModifiedOn
 }
 
