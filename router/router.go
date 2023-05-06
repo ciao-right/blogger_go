@@ -1,7 +1,11 @@
 package routerGroup
 
-import systemGroup "blogger/router/system"
+import (
+	serviceGroup "blogger/router/service"
+	systemGroup "blogger/router/system"
+)
 
 type RouterGroup struct {
-	System systemGroup.SystemRouter
+	System  systemGroup.SystemRouter
+	Service serviceGroup.ServiceRouter
 }
