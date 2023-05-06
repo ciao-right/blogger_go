@@ -1,6 +1,11 @@
 package service
 
-import "github.com/gin-gonic/gin"
+import (
+	"blogger/model/service"
+	svc "blogger/service/service"
+	"blogger/utils"
+	"github.com/gin-gonic/gin"
+)
 
 type FolderApi struct{}
 
@@ -20,5 +25,13 @@ type FolderApi struct{}
 // AddFolder @Success 200 {string} string "{"code":200,"data":{},"msg":"ok"}"
 // @Router /api/v1/folder/add [post]
 func (FolderApi) AddFolder(c *gin.Context) {
+	var folder service.Folder
+	err := utils.InitPost(c, &folder)
+	if err != nil {
+		utils.FailResCom(c, err, nil)
+		return
+	}
+	logic := svc.FolderService{}
+	logic.AddFolder(folder)
 
 }
