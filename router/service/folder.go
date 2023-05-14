@@ -12,6 +12,7 @@ func (FolderRouter) InitFolderRouter(group *gin.RouterGroup) gin.IRouter {
 	api := new(v1.Api).Service.FolderApi
 	{
 		folderRouter.POST("/addFolder", api.AddFolder)
+		folderRouter.POST("/getFolderList", api.GetFolderList)
 	}
 	return folderRouter
 }

@@ -6,14 +6,15 @@ import (
 )
 
 func InitEngine() *gin.Engine {
-	gin := gin.Default()
-	publicGroup := gin.Group("")
+	engine := gin.Default()
+	publicGroup := engine.Group("")
 	systemRouter := new(routerGroup.RouterGroup).System
+	serviceRouter := new(routerGroup.RouterGroup).Service
 	{
 		systemRouter.InitSystemBase(publicGroup)
 		systemRouter.InitSystemDept(publicGroup)
 		systemRouter.InitSystemUser(publicGroup)
+		serviceRouter.InitFolderRouter(publicGroup)
 	}
-
-	return gin
+	return engine
 }

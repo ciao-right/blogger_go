@@ -2,6 +2,7 @@ package service
 
 import (
 	"blogger/model/service"
+	"blogger/model/system"
 	svc "blogger/service/service"
 	"blogger/utils"
 	"github.com/gin-gonic/gin"
@@ -32,6 +33,28 @@ func (FolderApi) AddFolder(c *gin.Context) {
 		return
 	}
 	logic := svc.FolderService{}
-	logic.AddFolder(folder)
+	err = logic.AddFolder(folder)
+	if err != nil {
+		utils.FailResCom(c, err, nil)
+		return
+	}
+
+	utils.SuccessResCom(c, 1)
+}
+
+func (FolderApi) GetFolderList(c *gin.Context) {
+	var folderSearch system.SearchPage
+	err := utils.InitPost(c, &folderSearch)
+	if err != nil {
+		utils.FailResCom(c, err, nil)
+		return
+	}
+	logic := svc.FolderService{}
+	folderList, err := logic.GetFolderList(folderSearch)
+	if err != nil {
+		utils.FailResCom(c, err, nil)
+		return
+	}
+	utils.SuccessResCom(c, folderList)
 
 }
