@@ -13,6 +13,9 @@ func (FolderRouter) InitFolderRouter(group *gin.RouterGroup) gin.IRouter {
 	{
 		folderRouter.POST("/addFolder", api.AddFolder)
 		folderRouter.POST("/getFolderList", api.GetFolderList)
+		folderRouter.POST("/updateFolder", api.UpdateFolder)
+		folderRouter.GET("/deleteFolder", api.DeleteFolder)
+
 	}
 	return folderRouter
 }

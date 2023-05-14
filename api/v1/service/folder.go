@@ -58,3 +58,31 @@ func (FolderApi) GetFolderList(c *gin.Context) {
 	utils.SuccessResCom(c, folderList)
 
 }
+
+func (FolderApi) UpdateFolder(c *gin.Context) {
+	var folder service.Folder
+	err := utils.InitPost(c, &folder)
+	if err != nil {
+		utils.FailResCom(c, err, nil)
+		return
+	}
+	logic := svc.FolderService{}
+	err = logic.UpdateFolder(folder)
+	if err != nil {
+		utils.FailResCom(c, err, nil)
+		return
+	}
+	utils.SuccessResCom(c, 1)
+}
+
+func (FolderApi) DeleteFolder(c *gin.Context) {
+	id := c.Param("id")
+	logic := svc.FolderService{}
+	err := logic.DeleteFolder(id)
+	if err != nil {
+		utils.FailResCom(c, err, nil)
+		return
+	}
+	utils.SuccessResCom(c, 1)
+
+}

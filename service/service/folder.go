@@ -31,3 +31,14 @@ func (FolderService) GetFolderList(search system.SearchPage) ([]service.Folder, 
 	result := db.Model(service.Folder{}).Limit(search.PageSize).Offset((search.Page - 1) * search.PageSize).Find(&folderList)
 	return folderList, result.Error
 }
+
+func (FolderService) UpdateFolder(folder service.Folder) error {
+	db := global.Db
+	result := db.Model(service.Folder{}).Where("id = ?", folder.ID).Updates(folder)
+	return result.Error
+}
+func (FolderService) DeleteFolder(id string) error {
+	db := global.Db
+	result := db.Model(service.Folder{}).Where("id = ?", id).Delete(&service.Folder{})
+	return result.Error
+}
